@@ -1,10 +1,12 @@
 # Stock Charts - Readme File
 There are two sets of related files in the project. 
 * 1. 'importnasdaq.py' file along with all the text files in 'NASDAQData' folder
-* 2. 'main.py' file and associated files and folders that are part of the flask app that will crate a very simple yet powerful dashboard that can quickly data table with thousands of rows and produce stock market chart and calculate prediction when clicked. 
+* 2. 'main.py' file and associated files and folders (\__init__.py, views.py, templates, static, website) are part of the flask app that will create a very simple yet powerful dashboard that can quickly data table with thousands of rows and produce stock market chart and calculate prediction when clicked. 
 
 
 _Opensource Technologies used:_
+
+
 Besides python libraries, I am using the following freely usable libraries:
 * Bootstrap
 * simple-datatables
