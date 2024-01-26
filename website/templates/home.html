@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Home</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+  <link href="../static/css/styles.css" rel="stylesheet" />
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+  <script>
+
+    //Handling click function
+    function showCompanyDetails(ticker, companyName) {
+      document.getElementById("selectedCompanyHeader").innerText = "Selected Company: " + ticker + " / " + companyName;
+
+      $.ajax({
+        type: 'POST',
+        data: { 'ticker_dropdown': ticker },
+        success: function (data) {
+          $("#myAreaChart6").html(data);
+        }
+      });
+
+    }
+  </script>
+
+
+</head>
+
+<body class="sb-nav-fixed">
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand ps-3">Stock Charts</a>
+  </nav>
+
+  <div id="layoutSidenav_content">
+    <main>
+      <br><br>
+      <div class="container-fluid px-4">
+        <h1 class="mt-4">Dashboard</h1>
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item active">{{dashboard_name}}</li>
+        </ol>
+
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="card mb-4">
+              <div class="card-header">
+                <h4 id="selectedCompanyHeader">Select a Ticker/Company</h4>
+              </div>
+            </div>
+          </div>
+
+          <div id="myAreaChart6"></div>
+
+
+          <div class="card mb-4">
+            <div class="card-header">
+              <i class="fas fa-table me-1"></i>
+              DataTable Example
+            </div>
+            <div class="card-body">
+              <table id="datatablesSimple">
+                <thead>
+                  <tr>
+                    <th>Ticker</th>
+                    <th>Company</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <!-- Listing all the tickers and Company names in a searchable datatable -->
+                  {% for row in ticker_list %}
+                  <tr
+                    onclick="showCompanyDetails('{{ row['Ticker'] }}', '{{ row['Company_Name'] }}'  )">
+                    <td>{{ row['Ticker'] }} </td>
+                    <td>{{ row['Company_Name'] }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </main>
+
+    <footer class="py-4 bg-light mt-auto">
+      <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+          <div class="text-muted">Copyright &copy; Utsav Kattel</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script src="../static/js/scripts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+  <script src="../static/js/simple-DataTable.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

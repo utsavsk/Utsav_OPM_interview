@@ -1,0 +1,34 @@
+<!-- Chart -->
+<div class="row">
+    <div class="col-xl-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                Chart
+            </div>
+            {{ plot|safe }}
+        </div>
+    </div>
+
+    <!-- Prediction -->
+    <div class="col-xl-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                Prediction for <strong>{{textVal[0] | safe}}</strong>
+            </div>
+            <div class="container mt-4">
+                <div class="alert alert-warning" role="alert">
+                    <strong>Legal Disclaimer:</strong>
+                    <br>This is not a financial advice.
+                </div>
+
+                <button data-toggle="collapse" data-target="#hints">I Agree - View Prediction</button>
+                <p></p>
+
+                <div id="hints" class="collapse">
+                    <div>* The predicted price of this stock is <strong>{{textVal[1] | safe}}</strong> on {{textVal[0]
+                        | safe}}.
+                        <br>* Average volume traded: <strong>{{textVal[2] | safe}}.</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
